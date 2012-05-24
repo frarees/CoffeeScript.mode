@@ -15,18 +15,6 @@
         It features the following attributes, all optional if not noted otherwise:
             id
                 Has to be a unique string. Has to be specified.
-            color
-                a html comptible color in three or six letter hexadecimal format.
-                Used for text on bright document background colors.
-            inverted-color
-                a html comptible color in three or six letter hexadecimal format.
-                Used for text if a dark document background color is set.
-            font-weight
-                normal  Normal font-weight (default)
-                bold    Bold text in popup
-            font-style
-                normal  Normal font-weight (default)
-                italic  Bold text in popup
             usesymbolsfrommode
                 a mode name to use the symbol recognition from
                 when left out the value is inherited from the parent state
@@ -37,28 +25,14 @@
                 a string description of the type. currently only the values
                 "string" and "comment" have meaning and cause bracket matching
                 and syntax highlighting to ignore these areas of text
-
         -->
 
         <default id="Base" scope="meta.default">
-
             <!--
             The <keywords> tag specifies keyword groups within the current state.
             It features the following attributes, all optional if not noted otherwise:
                 id
                     Has to be a unique string. Has to be specified.
-                color
-                    a html comptible color in three or six letter hexadecimal format.
-                    Used for text on bright document background colors.
-                inverted-color
-                    a html comptible color in three or six letter hexadecimal format.
-                    Used for text if a dark document background color is set.
-                font-weight
-                    normal  Normal font-weight (default)
-                    bold    Bold text in popup
-                font-style
-                    normal  Normal font-weight (default)
-                    italic  Bold text in popup
                 casesensitive
                     yes     This group is case sensitive (default)
                     no      Ignore case for the group
@@ -154,7 +128,7 @@
 
                 <state id="Interpolation" scope="language.variable.interpolation">
                   <begin><regex>#{</regex></begin>
-                  <end><regex>}</regex></end>  
+                  <end><regex>}</regex></end>    
                 </state>
             </state>
 
