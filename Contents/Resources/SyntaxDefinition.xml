@@ -4,6 +4,8 @@
     <head>
         <name>CoffeeScript</name>
         <charsintokens><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$]]></charsintokens> 
+        <!-- <charsdelimitingtokens><![CDATA[ -]]></charsdelimitingtokens> -->
+        <!-- <charsincompletion><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-@$</=>!]]></charsincompletion> -->
     </head>
 
     <states>
@@ -13,6 +15,18 @@
         It features the following attributes, all optional if not noted otherwise:
             id
                 Has to be a unique string. Has to be specified.
+            color
+                a html comptible color in three or six letter hexadecimal format.
+                Used for text on bright document background colors.
+            inverted-color
+                a html comptible color in three or six letter hexadecimal format.
+                Used for text if a dark document background color is set.
+            font-weight
+                normal  Normal font-weight (default)
+                bold    Bold text in popup
+            font-style
+                normal  Normal font-weight (default)
+                italic  Bold text in popup
             usesymbolsfrommode
                 a mode name to use the symbol recognition from
                 when left out the value is inherited from the parent state
@@ -23,14 +37,28 @@
                 a string description of the type. currently only the values
                 "string" and "comment" have meaning and cause bracket matching
                 and syntax highlighting to ignore these areas of text
+
         -->
 
         <default id="Base" scope="meta.default">
+
             <!--
             The <keywords> tag specifies keyword groups within the current state.
             It features the following attributes, all optional if not noted otherwise:
                 id
                     Has to be a unique string. Has to be specified.
+                color
+                    a html comptible color in three or six letter hexadecimal format.
+                    Used for text on bright document background colors.
+                inverted-color
+                    a html comptible color in three or six letter hexadecimal format.
+                    Used for text if a dark document background color is set.
+                font-weight
+                    normal  Normal font-weight (default)
+                    bold    Bold text in popup
+                font-style
+                    normal  Normal font-weight (default)
+                    italic  Bold text in popup
                 casesensitive
                     yes     This group is case sensitive (default)
                     no      Ignore case for the group
@@ -40,7 +68,8 @@
             -->
 
             <keywords id="Keywords" useforautocomplete="yes" casesensitive="no" scope="keyword.control">
-                <!-- STUDIO added case insensitive -->
+            <!-- STUDIO added case insensitive -->
+
                 <string>if</string>
                 <string>unless</string>
                 <string>else</string>
@@ -83,7 +112,6 @@
                 <string>off</string>
                 <string>in</string>
             </keywords>
-
 
             <state id="Function" scope="language.function.coffeescript">
                 <begin><regex>(?:[\(][\w\s\.\,\$]*[\)][\s])?[-=]></regex></begin>
@@ -141,6 +169,18 @@
                 <end><regex>/[cgimosx]*</regex></end>
             </state>
 
+
+            <state id="Class Blocks" foldable="yes" scope="meta.block">
+              <begin><regex>^class[^\n]+\n</regex></begin>
+              <end><regex>(?:\r?\n|\r)(?=(?:\r?\n|\r)(?:\r?\n|\r)\S|(?:\r?\n|\r)\S|\S)</regex></end>
+              <import/>
+            </state>
+
+            <state id="Function Blocks" foldable="yes" scope="meta.block">
+              <begin><regex>^(?'functionstartingwhitespace'[ \t]*).*?(?:[\(][\w\s\.\,\$]*[\)][\s])?[-=]></regex></begin>
+              <end><regex>(?:\r?\n|\r)(?=(?:\r?\n|\r)(?:\r?\n|\r)(?#see-insert-start-group:functionstartingwhitespace)\S|(?:\r?\n|\r)(?#see-insert-start-group:functionstartingwhitespace)\S|(?#see-insert-start-group:functionstartingwhitespace)\S|(?:\r?\n|\r)(?:\r?\n|\r)\S|(?:\r?\n|\r)\S|\S)</regex></end>
+              <import/>
+            </state>
         </default>
 
     </states>
