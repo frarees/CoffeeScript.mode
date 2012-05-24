@@ -3,7 +3,7 @@
 
     <head>
         <name>CoffeeScript</name>
-        <charsintokens><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@]]></charsintokens> 
+        <charsintokens><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@$]]></charsintokens> 
         <!-- <charsdelimitingtokens><![CDATA[ -]]></charsdelimitingtokens> -->
         <!-- <charsincompletion><![CDATA[_0987654321abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-@$</=>!]]></charsincompletion> -->
     </head>
@@ -40,7 +40,7 @@
 
         -->
 
-        <default id="Base" color="#363636" inverted-color="#f0f">
+        <default id="Base" scope="meta.default">
 
             <!--
             The <keywords> tag specifies keyword groups within the current state.
@@ -67,7 +67,7 @@
                     no      Don't add to autocomplete dictionary
             -->
 
-            <keywords id="Keywords" color="#000" font-weight="bold" useforautocomplete="yes" casesensitive="no">
+            <keywords id="Keywords" useforautocomplete="yes" casesensitive="no" scope="keyword.control">
             <!-- STUDIO added case insensitive -->
 
                 <string>if</string>
@@ -115,58 +115,58 @@
 
 
 
-            <state id="Function" color="#005e97" font-weight="bold">
+            <state id="Function" scope="language.function.coffeescript">
                 <begin><regex>(?:[\(][\w\s\.\,\$]*[\)][\s])?[-=]></regex></begin>
                 <end><regex>[\s]</regex></end>
             </state>
 
 
-            <keywords id="Numbers" color="#008a6c" useforautocomplete="no">
+            <keywords id="Numbers" useforautocomplete="no" scope="constant.numeric">
               <regex>(?&lt;=[^\w\d]|^)(((([0-9]+\.[0-9]*)|(\.[0-9]+))([eE][+\-]?[0-9]+)?[fFlL]?)|((([1-9][0-9]*)|0[0-7]*|(0[xX][0-9a-fA-F]+))(([uU][lL]?)|([lL][uU]?))?))(?=[^\w\d]|$)</regex>
             </keywords>
 
 
-            <keywords id="Properties" color="#a85400" useforautocomplete="no">
+            <keywords id="Properties" useforautocomplete="no" scope="language.variable.instance">
               <regex>(@\w*)</regex>
             </keywords>
 
-            <keywords id="Properties" color="#a85400" useforautocomplete="no">
+            <keywords id="Properties" useforautocomplete="no" scope="language.variable.instance">
               <regex>(\w+(\s+)?:)</regex>
             </keywords>
 
-            <keywords id="Classes" color="#961a00" useforautocomplete="no">
+            <keywords id="Classes" useforautocomplete="no" scope="keyword.class">
               <regex>(\b[A-Z]\w*)</regex>
             </keywords>
 
-            <state id="Comment" color="#8b8b8b" font-style="italic">
+            <state id="Comment" type="comment" scope="comment.block.documentation">
                 <begin><regex>###</regex></begin>
                 <end><regex>###</regex></end>
             </state>
 
 
-            <state id="Single Comment" color="#8b8b8b" font-style="italic">
+            <state id="Single Comment" type="comment" scope="comment.line">
                 <begin><regex>#</regex></begin>
                 <end><regex>[\n\r]</regex></end>
             </state>
 
 
-            <state id="String" color="#357e00">
+            <state id="String" type="string" scope="string.double">
                 <begin><regex>"</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)"</regex></end>
 
-                <state id="Interpolated Values" color="#37aa00" font-weight="bold">
+                <state id="Interpolation" scope="language.variable.interpolation">
                   <begin><regex>#{</regex></begin>
-                  <end><regex>}</regex></end>	
+                  <end><regex>}</regex></end>  
                 </state>
             </state>
 
-            <state id="Single String" color="#357e00">
+            <state id="Single String" type="string" scope="string.single">
                 <begin><regex>'</regex></begin>
                 <end><regex>(((?&lt;!\\)(\\\\)*)|^)'</regex></end>
             </state>
 
 
-            <state id="RegularExpression" color="#880047" font-style="italic">
+            <state id="RegularExpression" scope="string.regex">
                 <begin><regex>(?i)(?&lt;=[=(,:\+~]|^|return|;)\s*/(?![/*+{}?])</regex></begin>
                 <end><regex>/[cgimosx]*</regex></end>
             </state>
